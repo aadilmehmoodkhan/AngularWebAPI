@@ -1,0 +1,6 @@
+<app-header></app-header>
+<div class="main p-3" [@routeAnimationsTrigger]="o.isActivated ? o.activatedRoute : ''">
+    <ngx-spinner size="large" type="ball-atom"></ngx-spinner>
+    <router-outlet #o="outlet"></router-outlet>
+</div>
+<app-footer></app-footer>

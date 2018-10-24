@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="jumbotron bg-white shadow">
+    <div class="container">
+      <h1 class="display-3">Welcome to {{siteName}}!</h1>
+      <p class="h4 mt-4 mb-4">The online marketplace for freelancers and anyone seeking the services of a freelancer.</p>
+      <p class="text-muted">Freelance World is a collection of community sites for all freelancers to advertise their
+        services to potential clients. Clients are able to source a suitable freelancer by searching through the
+        appropriate community site.</p>
+      <p>
+        <a *ngIf="!userLoggedIn" class="btn btn-primary" routerLink="/register">Get started &raquo;</a>
+        <a *ngIf="userLoggedIn" class="btn btn-primary" routerLink="/profile">Update Profile &raquo;</a>
+      </p>
+    </div>
+  </div>
+</div>
