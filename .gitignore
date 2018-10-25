@@ -4,6 +4,6 @@
 
 /.vs
 *.user
-/AngularWebAPI/bin/Debug/netcoreapp2.1
+/AngularWebAPI/bin
 /AngularWebAPI/obj
 /AngularWebAPI/ClientApp/package-lock.json

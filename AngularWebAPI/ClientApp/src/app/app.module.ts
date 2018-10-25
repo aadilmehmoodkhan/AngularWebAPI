@@ -21,8 +21,8 @@ import { DisallowAnonymous } from './services/guards/disallow-anonymous.guard';
 import { CenteredFormContainerComponent } from './shared/components/centered-form-container/centered-form-container.component';
 import { ProfileResolve } from './components/profile/profile.resolve.guard';
 
-declare let toastr: Toastr;
-declare let jQuery: any;
+export declare const toastr: Toastr;
+export declare const jQuery: any;
 
 @NgModule({
   declarations: [

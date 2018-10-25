@@ -2,6 +2,7 @@
   <h3 title>Update Profile</h3>
   <form [formGroup]="profileForm" autocomplete="off" (ngSubmit)="SaveProfile()">
     <div class="form-group" [ngClass]="{ 'error': (pf.fullName.touched && pf.fullName.invalid) }">
+      <label for="fullName">Full name:</label>
       <input class="form-control" formControlName="fullName" name="fullName" placeholder="Full name" minlength="4" maxlength="100" />
       <div class="error-message" *ngIf="pf.fullName.touched && pf.fullName.invalid">
         <span>Full name must be at</span>
@@ -10,12 +11,14 @@
       </div>
     </div>
     <div class="form-group" [ngClass]="{ 'error': (pf.age.touched && pf.age.invalid) }">
+      <label for="age">Age:</label>
       <input class="form-control" formControlName="age" name="age" placeholder="Age" type="number" min="10" max="100" />
       <div class="error-message" *ngIf="pf.age.touched && pf.age.invalid">
         Age should be between 10 and 100
       </div>
     </div>
     <div class="form-group" [ngClass]="{ 'error': (pf.dob.touched && pf.dob.invalid) }">
+      <label for="dob">Date of Birth:</label>
       <input class="form-control" formControlName="dob" name="dob" placeholder="Date of birth (MM/DD/YYYY)" />
       <div class="error-message" *ngIf="pf.dob.touched && pf.dob.invalid">
         Date of birth should be MM/DD/YYYY

@@ -5,6 +5,7 @@ import { Toastr, TOASTR_TOKEN } from 'src/app/shared/services/toastr.service';
 import { Profile } from 'src/app/services/model/profile';
 import { ApiResponse, ResponseType } from 'src/app/services/model/apiResponse';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     @Inject(TOASTR_TOKEN) private toastr: Toastr,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) { 
@@ -43,6 +45,7 @@ export class ProfileComponent implements OnInit {
     }
 
     const updateProfile: Profile = Object.assign({}, this.profileForm.value);
+    this.spinner.show();
     this.authService.updateProfile(updateProfile).subscribe(
       res => {
         const apiResponse = res as ApiResponse<any>;
@@ -58,6 +61,7 @@ export class ProfileComponent implements OnInit {
         }
       }
     )
+    this.spinner.hide();
 
     return false;
   }
