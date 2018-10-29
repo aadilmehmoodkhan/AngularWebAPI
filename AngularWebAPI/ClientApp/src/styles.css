@@ -7,14 +7,20 @@ div.main {
     margin-bottom: 200px;
 }
 
-.error input {
+.error input,
+.error textarea,
+.error select
+{
     background-color: #fee;
 }
 
-.error .error-message {
+.error div.error-message {
     color: red;
     font-size: 0.8em;
     padding: 4px 2px;
+}
+.error span.error-message {
+    color: red;
 }
 
 div.form-group {

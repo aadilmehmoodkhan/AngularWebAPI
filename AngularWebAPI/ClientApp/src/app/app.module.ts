@@ -18,8 +18,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DisallowLoggedIn } from './services/guards/disallow-logged-in.guard';
 import { DisallowAnonymous } from './services/guards/disallow-anonymous.guard';
-import { CenteredFormContainerComponent } from './shared/components/centered-form-container/centered-form-container.component';
 import { ProfileResolve } from './components/profile/profile.resolve.guard';
+import { SharedModule } from './modules/shared/shared.module';
 
 export declare const toastr: Toastr;
 export declare const jQuery: any;
@@ -33,8 +33,7 @@ export declare const jQuery: any;
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    ProfileComponent,
-    CenteredFormContainerComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +46,10 @@ export declare const jQuery: any;
       { path: 'login', component: LoginComponent, canActivate: [DisallowLoggedIn] },
       { path: 'register', component: RegisterComponent, canActivate: [DisallowLoggedIn] },
       { path: 'profile', component: ProfileComponent, canActivate: [DisallowAnonymous], resolve: { "userProfile": ProfileResolve } },
+      { path: 'jobs', loadChildren: "./modules/job/job.module#JobModule", canActivate: [DisallowAnonymous] },
       { path: '**', component: NotFoundComponent },
-    ])
+    ]),
+    SharedModule
   ],
   providers: [
     { provide: TOASTR_TOKEN, useValue: toastr },

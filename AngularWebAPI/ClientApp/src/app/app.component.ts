@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(
     private configService: ConfigService,
     private authService: AuthService) {
-      this.authService.ClearLoggedInUserName();
+      //this.authService.ClearLoggedInUserName();
     }
 
   title = 'Angular Demo Application';

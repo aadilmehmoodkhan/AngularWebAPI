@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 namespace AngularWebAPI.Model.Util
 {
 	public class ApiResponse<T>
-		where T : class
 	{
 		private ApiResponse()
 		{

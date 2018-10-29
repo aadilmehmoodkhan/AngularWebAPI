@@ -3,14 +3,16 @@ using System;
 using AngularWebAPI.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngularWebAPI.Migrations
 {
     [DbContext(typeof(SqliteAppDbContext))]
-    partial class SqliteAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181025133453_AddedJobRelatedEntities")]
+    partial class AddedJobRelatedEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,7 +130,7 @@ namespace AngularWebAPI.Migrations
 
                     b.Property<decimal?>("HourlyRate");
 
-                    b.Property<long>("PostedBy");
+                    b.Property<int>("PostedBy");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -170,7 +172,7 @@ namespace AngularWebAPI.Migrations
 
                     b.Property<int>("JobId");
 
-                    b.Property<long>("PostedBy");
+                    b.Property<int>("PostedBy");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,59 @@
+<app-form-container>
+  <h3 title>Post new Job</h3>
+  <form [formGroup]="postJob" (ngSubmit)="PostJob()" novalidate autocomplete="off">
+    <div class="form-group" [ngClass]="{ 'error': (f.title.touched && f.title.invalid) }">
+      <label for="username">Title:</label>
+      <textarea formControlName="title" name="title" class="form-control" placeholder="Title" required maxlength="500"></textarea>
+      <div class="error-message" *ngIf="f.title.touched && f.title.invalid">
+        Title is required
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'error': (f.details.touched && f.details.invalid) }">
+      <label for="details">Details:</label>
+      <textarea formControlName="details" name="details" class="form-control" placeholder="Details" rows="6" required maxlength="4000"></textarea>
+      <div class="error-message" *ngIf="f.details.touched && f.details.invalid">
+          Job detail is required
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'error': (f.hourlyRate.touched && postJob.errors?.jobRate) }">
+      <label for="hourlyRate">Hourly Rate:</label>
+      <input formControlName="hourlyRate" name="hourlyRate" class="form-control" placeholder="Hourly Rate">
+    </div>
+    <div class="form-group" [ngClass]="{ 'error': (f.fixedPrice.touched && postJob.errors?.jobRate) }">
+      <label for="fixedPrice">Fixed Price:</label>
+      <input formControlName="fixedPrice" name="fixedPrice" class="form-control" placeholder="Fixed Price">
+      <div class="error-message" *ngIf="postJob.touched && postJob.errors?.jobRate">
+          {{postJob.errors.jobRate}}
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'error': (f.skills.invalid) }">
+      <label for="skills">Skills: 
+        <span class="error-message" *ngIf="f.skills.errors?.singleCheckboxMustBeSelected">
+          ({{f.skills.errors.singleCheckboxMustBeSelected}})
+        </span>
+      </label>
+      <div>
+        <label formArrayName="skills" *ngFor="let skill of f.skills.controls; let i = index;">
+          <input type="checkbox" [formControlName]="i" />
+          {{skillsAndCategories.skills[i].name}} &nbsp;
+        </label>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'error': (f.categories.invalid) }">
+        <label for="categories">Categories: 
+          <span class="error-message" *ngIf="f.categories.errors?.singleCheckboxMustBeSelected">
+            ({{f.categories.errors.singleCheckboxMustBeSelected}})
+          </span>
+        </label>
+        <div formArrayName="categories" *ngFor="let category of f.categories.controls; let i = index;">
+          <label>
+            <input type="checkbox" [formControlName]="i" />
+            {{skillsAndCategories.categories[i].name}}
+          </label> &nbsp;
+        </div>
+      </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="postJob.invalid" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</app-form-container>

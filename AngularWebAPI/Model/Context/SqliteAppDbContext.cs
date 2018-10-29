@@ -21,6 +21,19 @@ namespace AngularWebAPI.Model.Context
 			base.OnModelCreating(builder);
 
 			builder.ApplyConfiguration<AppUser>(new AppUserConfig());
+			builder.ApplyConfiguration<Job>(new JobConfig());
+			builder.ApplyConfiguration<Skill>(new SkillConfig());
+			builder.ApplyConfiguration<Category>(new CategoryConfig());
+			builder.ApplyConfiguration<JobProposal>(new JobProposalConfig());
+			builder.ApplyConfiguration<JobCategory>(new JobCategoryConfig());
+			builder.ApplyConfiguration<JobSkill>(new JobSkillConfig());
 		}
+
+		public DbSet<Job> Jobs { get; set; }
+		public DbSet<Category> Categories { get; set; }
+		public DbSet<Skill> Skills { get; set; }
+		public DbSet<JobProposal> JobProposals { get; set; }
+		public DbSet<JobCategory> JobCategories { get; set; }
+		public DbSet<JobSkill> JobSkills { get; set; }
 	}
 }

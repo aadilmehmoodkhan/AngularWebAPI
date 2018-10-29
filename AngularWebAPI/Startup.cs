@@ -12,6 +12,8 @@ using AngularWebAPI;
 using System;
 using AngularWebAPI.Model.Repositories.Abstract;
 using AngularWebAPI.Model.Repositories.Impl.Sqlite;
+using NSwag.AspNetCore;
+using NJsonSchema;
 
 namespace AngularWebAPI
 {
@@ -31,6 +33,7 @@ namespace AngularWebAPI
 			ConfigureIdentity(services);
 			ConfigureRepositories(services);
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddSwagger();
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
@@ -42,6 +45,7 @@ namespace AngularWebAPI
 		private void ConfigureRepositories(IServiceCollection services)
 		{
 			services.AddTransient<IUserRepository, UserRepository>();
+			services.AddTransient<IJobsRepository, JobsRepository>();
 		}
 
 		private void ConfigureIdentity(IServiceCollection services)
@@ -79,6 +83,12 @@ namespace AngularWebAPI
 			}
 
 			app.UseStaticFiles();
+			app.UseSwaggerUi3WithApiExplorer(settings =>
+			{
+				settings.GeneratorSettings.DefaultPropertyNameHandling =
+					PropertyNameHandling.CamelCase;
+			});
+
 			app.UseSpaStaticFiles();
 			app.UseAuthentication();
 
