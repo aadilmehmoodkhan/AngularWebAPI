@@ -4,7 +4,7 @@ import { ConfigService } from 'src/app/services/config.service';
 import { PostNewJob } from './postNewJob';
 import { Observable } from 'rxjs';
 import { SkillsAndCateories } from './skillsAndCategories';
-import { JobModule } from '../job.module';
+import { JobPage } from './job-page';
 
 @Injectable()
 export class JobService {
@@ -19,5 +19,9 @@ export class JobService {
 
   getAllSkillsAndCategories(): Observable<SkillsAndCateories> {
     return this.httpClient.get<SkillsAndCateories>(`${this.configService.apiSettings.jobService}/skillsAndCategories`);
+  }
+
+  getLatestJobs(pageNo: number): Observable<JobPage> {
+    return this.httpClient.get<JobPage>(`${this.configService.apiSettings.jobService}/list/${pageNo}`);
   }
 }

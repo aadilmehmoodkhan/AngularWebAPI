@@ -1,3 +1,53 @@
-<p>
-  job-listing works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2>Job Feed - Page: {{pageNo}}</h2>
+      <p class="text-black-50"><em>The following job feed will display latest jobs posted. Jobs are sorted and the
+          latest jobs appear on top. Clicking on any job will allow you to see its details and submit proposals</em></p>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="firstPage()">&laquo;</a></li>
+      <li class="page-item"><a class="page-link" (click)="previousPage()">&larr;</a></li>
+      <li class="page-item"><a class="page-link" (click)="nextPage()">&rarr;</a></li>
+      <li class="page-item"><a class="page-link" (click)="lastPage()">&raquo;</a></li>
+    </ul>
+  </nav>
+  <div class="row" *ngFor="let job of jobs">
+    <div class="col">
+      <div class="mb-4 shadow p-4 bg-white">
+        <h5>{{job.jobID}} - {{job.title}}</h5>
+        <div class="text-black-50 small">
+          <em>{{job.postedBy}} posted on <span class="text-primary">{{job.createdOn | date:'medium'}}</span></em>
+        </div>
+        <p>
+          <em class="small text-black-50">Required skills: </em>&nbsp; <span class="badge badge-info mr-1" *ngFor="let skill of job.skills">{{skill.name}}</span>
+          <br />
+          <em class="small text-black-50">Categories:</em>&nbsp; <span class="badge badge-info mr-1" *ngFor="let category of job.categories">{{category.name}}</span>
+        </p>
+        <p class="mt-2 pt-2 pb-2" [innerHTML]="job.shortdetails"></p>
+        <p>
+          <a class="btn btn-primary btn-sm text-white" [routerLink]="['details', job.jobID]">Details</a>
+          &nbsp;
+          <span class="btn btn-outline-primary btn-sm" *ngIf="job.hourlyRate != null">Hourly rate: {{job.hourlyRate |
+            currency}}</span>
+          <span class="btn btn-outline-primary btn-sm" *ngIf="job.fixedPrice != null">Fixed price: {{job.fixedPrice |
+            currency}}</span>
+          &nbsp;
+          <span class="btn btn-outline-primary btn-sm" *ngIf="job.proposalCount != null">{{job.proposalCount}}
+            proposals</span>
+          <span class="btn btn-outline-primary btn-sm" *ngIf="job.proposalCount == null || 0">No proposals</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="firstPage()">&laquo;</a></li>
+      <li class="page-item"><a class="page-link" (click)="previousPage()">&larr;</a></li>
+      <li class="page-item"><a class="page-link" (click)="nextPage()">&rarr;</a></li>
+      <li class="page-item"><a class="page-link" (click)="lastPage()">&raquo;</a></li>
+    </ul>
+  </nav>
+</div>

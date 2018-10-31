@@ -12,5 +12,6 @@ namespace AngularWebAPI.Model.Repositories.Abstract
     {
 		Task<int> PostNewJob(JobsControllerPostNewJob newJob);
 		Task<JobsControllerGetAllSkillsAndCategories> GetAllSkillsAndCategories();
+		Task<JobsControllerGetLatestJobs> GetLatestJobs(int itemsPerPage = 10, int pageNo = 1);
     }
 }

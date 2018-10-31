@@ -8,18 +8,20 @@ import { SharedModule } from '../shared/shared.module';
 import { PostResolver } from './components/post/post.resolver.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { JobService } from './services/job.service';
+import { JobListingResolveGuard } from './components/job-listing/job-listing.resolve.guard';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: "", component: JobListingComponent, canActivate: [DisallowAnonymous] },
+      { path: "", component: JobListingComponent, canActivate: [DisallowAnonymous], resolve: { "jobPage" : JobListingResolveGuard } },
+      { path: "list/:pageNo", component: JobListingComponent, canActivate: [DisallowAnonymous], resolve: { "jobPage" : JobListingResolveGuard } },
       { path: "post", component: PostComponent, canActivate: [DisallowAnonymous], resolve: { "skillsAndCategories": PostResolver } }
     ]),
     SharedModule,
     HttpClientModule
   ],
   declarations: [JobListingComponent, PostComponent],
-  providers: [JobService, PostResolver]
+  providers: [JobService, PostResolver, JobListingResolveGuard]
 })
 export class JobModule { }
