@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, FormArray, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, FormArray, ValidationErrors, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkillsAndCateories } from '../../services/skillsAndCategories';
 import { PostNewJob } from '../../services/postNewJob';
@@ -76,6 +76,14 @@ export class PostComponent implements OnInit {
 
   get f() {
     return this.postJob.controls;
+  }
+
+  get skillsControls(): AbstractControl[] {
+    return (<FormArray>this.postJob.get("skills")).controls;
+  }
+
+  get categoriesControls(): AbstractControl[] {
+    return (<FormArray>this.postJob.get("categories")).controls;
   }
 
 }

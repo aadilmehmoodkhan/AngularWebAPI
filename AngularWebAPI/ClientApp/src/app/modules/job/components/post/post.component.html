@@ -33,7 +33,7 @@
         </span>
       </label>
       <div>
-        <label formArrayName="skills" *ngFor="let skill of f.skills.controls; let i = index;">
+        <label formArrayName="skills" *ngFor="let skill of skillsControls; let i = index;">
           <input type="checkbox" [formControlName]="i" />
           {{skillsAndCategories.skills[i].name}} &nbsp;
         </label>
@@ -46,7 +46,7 @@
           </span>
         </label>
         <div>
-          <label formArrayName="categories" *ngFor="let category of f.categories.controls; let i = index;">
+          <label formArrayName="categories" *ngFor="let category of categoriesControls; let i = index;">
             <input type="checkbox" [formControlName]="i" />
             {{skillsAndCategories.categories[i].name}} &nbsp;
           </label>
