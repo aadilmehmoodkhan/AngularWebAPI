@@ -35,7 +35,7 @@ namespace AngularWebAPI.Model.Repositories.Impl.Sqlite
 			});
 		}
 
-		public async Task<JobsControllerGetLatestJobs> GetLatestJobs(int itemsPerPage = 5, int pageNo = 1)
+		public async Task<JobsControllerGetLatestJobs> GetLatestJobs(int itemsPerPage = 10, int pageNo = 1)
 		{
 			var allSkills = SqliteAppDbContext.Skills.ToArray();
 			var allCategories = SqliteAppDbContext.Categories.ToArray();

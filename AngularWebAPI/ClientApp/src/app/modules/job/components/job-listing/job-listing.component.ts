@@ -12,7 +12,10 @@ export class JobListingComponent implements OnInit {
 
   pageNo: number;
   jobPage: JobPage;
-  get jobs() { return this.jobPage.data; }
+  
+  get jobs() { 
+    return this.jobPage.data; 
+  }
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -21,25 +24,14 @@ export class JobListingComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.pageNo = params.pageNo || 1;
+      this.pageNo = parseInt(params.pageNo || 1);
       this.jobPage = new JobPage(<JobPage>this.route.snapshot.data["jobPage"]);
       this.spinner.hide();
     });
   }
 
-  firstPage() {
-
+  onPageChanged(newPageNo) {
+    this.pageNo = +newPageNo;
+    this.router.navigate(["jobs", "list", this.pageNo])
   }
-
-  nextPage() {
-    this.router.navigate(["jobs", "list", +this.pageNo + 1])
-  }
-  previousPage() {
-    this.router.navigate(["jobs", "list", +this.pageNo - 1])
-  }
-
-  lastPage() {
-
-  }
-
 }

@@ -27,8 +27,7 @@ namespace AngularWebAPI.Controllers
 		[Route("list/{pageNo:int}")]
 		public async Task<JobsControllerGetLatestJobs> GetLatestPostedJobsPage(int pageNo)
 		{
-			System.Threading.Thread.Sleep(1000);
-			return await JobsRepository.GetLatestJobs(itemsPerPage: 3, pageNo: pageNo);
+			return await JobsRepository.GetLatestJobs(pageNo: pageNo);
 		}
 
 		[HttpGet, Route("skillsAndCategories")]

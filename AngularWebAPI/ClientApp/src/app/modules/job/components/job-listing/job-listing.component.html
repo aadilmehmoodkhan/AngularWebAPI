@@ -1,23 +1,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <h2>Job Feed - Page: {{pageNo}}</h2>
+      <h2>Job Feed</h2>
       <p class="text-black-50"><em>The following job feed will display latest jobs posted. Jobs are sorted and the
           latest jobs appear on top. Clicking on any job will allow you to see its details and submit proposals</em></p>
     </div>
   </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" (click)="firstPage()">&laquo;</a></li>
-      <li class="page-item"><a class="page-link" (click)="previousPage()">&larr;</a></li>
-      <li class="page-item"><a class="page-link" (click)="nextPage()">&rarr;</a></li>
-      <li class="page-item"><a class="page-link" (click)="lastPage()">&raquo;</a></li>
-    </ul>
-  </nav>
+  <app-pager 
+    [pageNo]="jobPage.pageNo" 
+    [totalJobCount]="jobPage.totalJobCount" 
+    [pageSize]="jobPage.pageSize"
+    (pageChanged)="onPageChanged($event)">
+  </app-pager>
   <div class="row" *ngFor="let job of jobs">
     <div class="col">
       <div class="mb-4 shadow p-4 bg-white">
-        <h5>{{job.jobID}} - {{job.title}}</h5>
+        <h5>{{job.title}}</h5>
         <div class="text-black-50 small">
           <em>{{job.postedBy}} posted on <span class="text-primary">{{job.createdOn | date:'medium'}}</span></em>
         </div>
@@ -26,7 +24,7 @@
           <br />
           <em class="small text-black-50">Categories:</em>&nbsp; <span class="badge badge-info mr-1" *ngFor="let category of job.categories">{{category.name}}</span>
         </p>
-        <p class="mt-2 pt-2 pb-2" [innerHTML]="job.shortdetails"></p>
+        <em><p class="mt-2 pt-2 pb-2" [innerHTML]="job.shortdetails"></p></em>
         <p>
           <a class="btn btn-primary btn-sm text-white" [routerLink]="['details', job.jobID]">Details</a>
           &nbsp;
@@ -42,12 +40,10 @@
       </div>
     </div>
   </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" (click)="firstPage()">&laquo;</a></li>
-      <li class="page-item"><a class="page-link" (click)="previousPage()">&larr;</a></li>
-      <li class="page-item"><a class="page-link" (click)="nextPage()">&rarr;</a></li>
-      <li class="page-item"><a class="page-link" (click)="lastPage()">&raquo;</a></li>
-    </ul>
-  </nav>
+  <app-pager 
+    [pageNo]="jobPage.pageNo" 
+    [totalJobCount]="jobPage.totalJobCount" 
+    [pageSize]="jobPage.pageSize"
+    (pageChanged)="onPageChanged($event)">
+  </app-pager>
 </div>

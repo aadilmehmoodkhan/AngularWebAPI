@@ -14,4 +14,9 @@ export class JobPage {
     pageSize: number;
     pageNo: number;
     data: Job[];
+
+    get totalPages() : number {
+        return Math.ceil(this.totalJobCount / this.pageSize);
+    }
+
 }
