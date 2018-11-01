@@ -26,7 +26,7 @@
         </p>
         <em><p class="mt-2 pt-2 pb-2" [innerHTML]="job.shortdetails"></p></em>
         <p>
-          <a class="btn btn-primary btn-sm text-white" [routerLink]="['details', job.jobID]">Details</a>
+          <a class="btn btn-primary btn-sm text-white" (click)="jobDetails()">Details</a>
           &nbsp;
           <span class="btn btn-outline-primary btn-sm" *ngIf="job.hourlyRate != null">Hourly rate: {{job.hourlyRate |
             currency}}</span>

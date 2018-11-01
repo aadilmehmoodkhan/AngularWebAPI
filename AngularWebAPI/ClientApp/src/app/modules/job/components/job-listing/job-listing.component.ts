@@ -34,4 +34,9 @@ export class JobListingComponent implements OnInit {
     this.pageNo = +newPageNo;
     this.router.navigate(["jobs", "list", this.pageNo])
   }
+
+  jobDetails() {
+    alert("Feature not implemented.... yet :-)");
+    return false;
+  }
 }
