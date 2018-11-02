@@ -33,13 +33,6 @@ namespace AngularWebAPI
 			ConfigureIdentity(services);
 			ConfigureRepositories(services);
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-			services.AddSwagger();
-
-			// In production, the Angular files will be served from this directory
-			services.AddSpaStaticFiles(configuration =>
-			{
-				configuration.RootPath = "ClientApp/dist";
-			});
 		}
 
 		private void ConfigureRepositories(IServiceCollection services)
@@ -82,14 +75,8 @@ namespace AngularWebAPI
 				app.UseExceptionHandler("/Error");
 			}
 
+            app.UseDefaultFiles();
 			app.UseStaticFiles();
-			app.UseSwaggerUi3WithApiExplorer(settings =>
-			{
-				settings.GeneratorSettings.DefaultPropertyNameHandling =
-					PropertyNameHandling.CamelCase;
-			});
-
-			app.UseSpaStaticFiles();
 			app.UseAuthentication();
 
 			app.UseMvc(routes =>
@@ -97,19 +84,6 @@ namespace AngularWebAPI
 				routes.MapRoute(
 					name: "default",
 					template: "{controller}/{action=Index}/{id?}");
-			});
-
-			app.UseSpa(spa =>
-			{
-				// To learn more about options for serving an Angular SPA from ASP.NET Core,
-				// see https://go.microsoft.com/fwlink/?linkid=864501
-
-				spa.Options.SourcePath = "ClientApp";
-
-				if (env.IsDevelopment())
-				{
-					spa.UseAngularCliServer(npmScript: "start");
-				}
 			});
 		}
 	}
