@@ -12,17 +12,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { TOASTR_TOKEN, Toastr } from './shared/services/toastr.service';
-import { JQUERY_TOKEN } from './shared/services/jquery.service';
+import { TOASTR_TOKEN, toastrfactory } from './shared/services/toastr.service';
+import { JQUERY_TOKEN, jQueryFactory } from './shared/services/jquery.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DisallowLoggedIn } from './services/guards/disallow-logged-in.guard';
 import { DisallowAnonymous } from './services/guards/disallow-anonymous.guard';
 import { ProfileResolve } from './components/profile/profile.resolve.guard';
 import { SharedModule } from './modules/shared/shared.module';
-
-export declare const toastr: Toastr;
-export declare const jQuery: any;
 
 @NgModule({
   declarations: [
@@ -52,8 +49,8 @@ export declare const jQuery: any;
     SharedModule
   ],
   providers: [
-    { provide: TOASTR_TOKEN, useValue: toastr },
-    { provide: JQUERY_TOKEN, useValue: jQuery }
+    { provide: TOASTR_TOKEN, useFactory: toastrfactory },
+    { provide: JQUERY_TOKEN, useFactory: jQueryFactory }
   ],
   bootstrap: [AppComponent]
 })

@@ -8,3 +8,7 @@ export interface Toastr {
   warning(msg: string, title?: string): void;
   error(msg: string, title?: string): void;
 }
+
+export function toastrfactory() {
+  return window["toastr"];
+}
